@@ -49,12 +49,14 @@ function calculateWorkingTime() {
       return sum;
     }, 0);
 
-    const workingHours = total - pause;
+    let workingHours = (total - pause);
+    workingHours = workingHours.toFixed(2); // auf 2 Dezimalstellen runden
     const hours = Math.floor(workingHours);
     const minutes = Math.round((workingHours - hours) * 60);
 
     return `${hours}h:${minutes}min`; 
   } catch (e) {
+    console.error(e);
     return null; 
   }
 }
