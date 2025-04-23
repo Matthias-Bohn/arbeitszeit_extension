@@ -45,6 +45,15 @@ Siehe [INSTALL.md](./install.md)
 
 ---
 
+## ⚠️ Hinweis zur Genauigkeit
+
+Diese Erweiterung bietet eine praktische Unterstützung bei der Berechnung der Netto-Arbeitszeit.  
+**Alle Angaben erfolgen jedoch ohne Gewähr.**  
+Es liegt in der Verantwortung der Nutzer:innen, **die ermittelten Zeiten eigenständig zu überprüfen** und sicherzustellen, dass sie den tatsächlichen Arbeitszeiten entsprechen.  
+Die Erweiterung ersetzt keine offizielle Zeiterfassung und dient lediglich der Orientierung.
+
+---
+
 ## 📄 Lizenz
 
 MIT – frei für private & berufliche Nutzung
@@ -53,4 +62,4 @@ MIT – frei für private & berufliche Nutzung
 
 ## 🐛 Bugs & Feedback
 
-Issues, Verbesserungsvorschläge oder Fragen gerne über [GitHub Issues](https://github.com/dein-nutzername/arbeitszeit-rechner/issues)
+Issues, Verbesserungsvorschläge oder Fragen gerne über [GitHub Issues](https://github.com/Matthias-Bohn/arbeitszeit_extension/issues)

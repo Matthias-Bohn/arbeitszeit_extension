@@ -20,15 +20,14 @@ function calculateWorkingTime() {
   }
 
   try {
-    // Startzeit suchen
-    const startInput = document.querySelector('[id*="Begtim"][id$="-inner"]');
-    const start = startInput?.value;
-    if (!start) throw new Error("Startzeit nicht gefunden");
+    // Arbeitszeit sammeln
+    const workStarts = Array.from(document.querySelectorAll('[id*="Begtim"][id$="-inner"]'))
+      .map(el => el.value)
+      .filter(val => val); // nur nicht-leere Werte
 
-    // Endzeit suchen
-    const endInput = document.querySelector('[id*="Endtim"][id$="-inner"]');
-    const end = endInput?.value;
-    if (!end) throw new Error("Endzeit nicht gefunden");
+    const workEnds = Array.from(document.querySelectorAll('[id*="Endtim"][id$="-inner"]'))
+      .map(el => el.value)
+      .filter(val => val); // nur nicht-leere Werte
 
     // Pausen sammeln
     const pauseStarts = Array.from(document.querySelectorAll('[id*="breakBegin"][id$="-inner"]'))
@@ -39,7 +38,13 @@ function calculateWorkingTime() {
       .map(el => el.value)
       .filter(val => val); // nur nicht-leere Werte
 
-    const total = (parseTime(end) - parseTime(start)) / (1000 * 60 * 60);
+    const work = workStarts.reduce((sum, start, index) => {
+      const end = workEnds[index];
+      if (start && end) {
+        sum += (parseTime(end) - parseTime(start)) / (1000 * 60 * 60);
+      }
+      return sum;
+    }, 0);
 
     const pause = pauseStarts.reduce((sum, start, index) => {
       const end = pauseEnds[index];
@@ -49,7 +54,7 @@ function calculateWorkingTime() {
       return sum;
     }, 0);
 
-    let workingHours = (total - pause);
+    let workingHours = (work - pause);
     workingHours = workingHours.toFixed(2); // auf 2 Dezimalstellen runden
     const hours = Math.floor(workingHours);
     const minutes = Math.round((workingHours - hours) * 60);
