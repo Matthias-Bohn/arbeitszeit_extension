@@ -6,9 +6,9 @@ window.onload = () => {
       function: calculateWorkingTime
     }, ([result]) => {
       const output = result && result.result
-        ? `Arbeitszeit heute: ${result.result}`
+        ? `${result.result}`
         : `Konnte Arbeitszeit nicht berechnen`;
-      document.getElementById('result').textContent = output;
+      document.getElementById('result').innerHTML = output;
     });
   });
 };
@@ -54,15 +54,52 @@ function calculateWorkingTime() {
       return sum;
     }, 0);
 
+    // aktuelle Uhrzeit hh:mm
+    const now = new Date();
+    const currentTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+    // berrechne Arbeitszeit bis zur aktuellen Uhrzeit
+    const currentWork = workStarts.reduce((sum, start, index) => {
+      const startTime = parseTime(start);
+      const current = parseTime(currentTime);
+      const end = workEnds[index];
+      const endTime = parseTime(end);
+    
+      if (startTime >= current) {
+        // Start liegt in der Zukunft – nichts zählen
+        return sum;
+      }
+    
+      if (startTime < current && endTime < current && index < workEnds.length-1) {
+        console.log(`Berechnung: Vollständige Arbeitszeit von ${start} bis ${end}`);
+        sum += (endTime - startTime) / (1000 * 60 * 60);
+      } else if (startTime < current && endTime < current) {
+        console.log(`Berechnung: Arbeitszeit von ${start} bis ${currentTime} (Endzeit liegt vor aktueller Zeit)`);
+        sum += (current - startTime) / (1000 * 60 * 60);
+      } else if (startTime < current && endTime >= current) {
+        console.log(`Berechnung: Arbeitszeit von ${start} bis ${currentTime} (Endzeit liegt in der Zukunft)`);
+        sum += (current - startTime) / (1000 * 60 * 60);
+      }
+
+      return sum;
+    }, 0);
+
+    console.log(`current work: ${currentWork}`);
+
     let workingHours = (work - pause);
     workingHours = workingHours.toFixed(2); // auf 2 Dezimalstellen runden
     const hours = Math.floor(workingHours);
     const minutes = Math.round((workingHours - hours) * 60);
 
-    return `${hours}h:${minutes}min`; 
+    let currentWorkingHours = currentWork - pause;
+    currentWorkingHours = currentWorkingHours.toFixed(2); // auf 2 Dezimalstellen runden
+    const currentHours = Math.floor(currentWorkingHours);
+    const currentMinutes = Math.round((currentWorkingHours - currentHours) * 60);
+
+    return `Eingetragene Arbeitzeit: ${hours}h:${minutes}min <br> Aktuelle Arbeitszeit: ${currentHours}h:${currentMinutes}min`;
   } catch (e) {
     console.error(e);
-    return null; 
+    return null;
   }
 }
 
