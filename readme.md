@@ -21,7 +21,7 @@
 
 ## 📦 Installation
 
-Siehe [INSTALL.md](./INSTALL.md)
+Siehe [INSTALL.md](./install.md)
 
 ---
 
