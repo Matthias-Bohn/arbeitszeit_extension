@@ -2,44 +2,17 @@ const calculateWorkingTime = () => {
 
   // cleers the console
   console.clear();
+  //console.info Informationen zur extension version
+  console.info("Version: 1.2");
+  console.info("Erstellt von: Matthias Bohn");
+  console.info("Datum: 24.04.2025");
+  console.info("-------------------------------");
+  console.info("Starte Berechnung der Arbeitszeit...");
 
   const parseTime = (timeStr) => {
     const [hours, minutes] = timeStr.split(':').map(Number);
     return new Date(0, 0, 0, hours, minutes);
   };
-
-  /* const getCurrentWorkingTime = (workStarts, workEnds) => {
-    const now = new Date();
-    const currentTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-    console.log(`Aktuelle Uhrzeit: ${currentTime}`);
-    const total = workStarts.reduce((sum, start, index) => {
-      const startTime = parseTime(start);
-      const current = parseTime(currentTime);
-      const endTime = parseTime(workEnds[index]);
-
-      if (startTime >= current) {
-        console.log(`Ignoriert: Arbeitsbeginn ${start} liegt in der Zukunft`);
-        return sum;
-      }
-
-      if (startTime < current && endTime < current && index < workEnds.length - 1) {
-        const h = (endTime - startTime) / (1000 * 60 * 60);
-        console.log(`Addiere volle Zeit: ${start} bis ${workEnds[index]} = ${h.toFixed(2)}h`);
-        sum += h;
-      } else if (startTime < current && endTime < current) {
-        const h = (current - startTime) / (1000 * 60 * 60);
-        console.log(`Addiere bis jetzt: ${start} bis ${currentTime} = ${h.toFixed(2)}h`);
-        sum += h;
-      } else if (startTime < current && endTime >= current) {
-        const h = (current - startTime) / (1000 * 60 * 60);
-        console.log(`Addiere laufende Zeit: ${start} bis ${currentTime} = ${h.toFixed(2)}h`);
-        sum += h;
-      }
-      return sum;
-    }, 0);
-    console.log(`Aktuell berechnete Arbeitszeit: ${total.toFixed(2)}h`);
-    return total.toFixed(2);
-  }; */
 
   const getCurrentWorkingTime = (workStarts, workEnds, pauseStarts, pauseEnds) => {
     const now = new Date();
