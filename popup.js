@@ -3,9 +3,9 @@ const calculateWorkingTime = () => {
   // cleers the console
   console.clear();
   //console.info Informationen zur extension version
-  console.info("Version: 1.2");
+  console.info("Version: 1.3");
   console.info("Erstellt von: Matthias Bohn");
-  console.info("Datum: 24.04.2025");
+  console.info("Datum: 22.05.2025");
   console.info("-------------------------------");
   console.info("Starte Berechnung der Arbeitszeit...");
 
@@ -74,11 +74,28 @@ const calculateWorkingTime = () => {
     return final;
   };
 
+  const matchDate = (date1, date2) => {
+    
+    const [day, month, year] = date1.split('.').map(Number);
+    const d1 = new Date(year, month - 1, day); // Achtung: Monat = 0-basiert
+
+    const d2 = new Date(date2); // ISO/JS-kompatibles Datum, z. B. "Thu May 22 2025 08:45:32 GMT+0200"
+
+    return (
+      d1.getFullYear() === d2.getFullYear() &&
+      d1.getMonth() === d2.getMonth() &&
+      d1.getDate() === d2.getDate()
+    );
+  };
+
+
   try {
     const workStarts = Array.from(document.querySelectorAll('[id*="Begtim"][id$="-inner"]')).map(el => el.value).filter(Boolean);
     const workEnds = Array.from(document.querySelectorAll('[id*="Endtim"][id$="-inner"]')).map(el => el.value).filter(Boolean);
     const pauseStarts = Array.from(document.querySelectorAll('[id*="breakBegin"][id$="-inner"]')).map(el => el.value).filter(Boolean);
     const pauseEnds = Array.from(document.querySelectorAll('[id*="breakEnd"][id$="-inner"]')).map(el => el.value).filter(Boolean);
+    const datum = Array.from(document.querySelectorAll('span')).find(el => el.textContent.trim() === 'Datum:').parentElement.nextSibling.children[0].children[0].textContent;
+    const actualDate = new Date();
 
     console.log(`Gefundene Arbeitszeiten: Starts=${JSON.stringify(workStarts)}, Ends=${JSON.stringify(workEnds)}`);
     console.log(`Gefundene Pausen: Starts=${JSON.stringify(pauseStarts)}, Ends=${JSON.stringify(pauseEnds)}`);
@@ -117,7 +134,13 @@ const calculateWorkingTime = () => {
     console.log(`- Eingetragene Arbeitszeit: ${hours}h ${minutes}min`);
     console.log(`- Aktuelle Arbeitszeit: ${currentHours}h ${currentMinutes}min`);
 
-    return `Eingetragene Arbeitzeit: ${hours}h:${minutes}min <br> Aktuelle Arbeitszeit: ${currentHours}h:${currentMinutes}min`;
+    
+    console.log(matchDate(datum, actualDate) ? "Datum stimmt überein" : "Datum stimmt nicht überein");
+    const returnMessage = matchDate(datum, actualDate)
+      ? `Eingetragene Arbeitszeit: ${hours}h:${minutes}min <br> Aktuelle Arbeitszeit: ${currentHours}h:${currentMinutes}min`
+      : `Eingetragene Arbeitszeit: ${hours}h:${minutes}min`;
+
+    return returnMessage;
   } catch (e) {
     console.error("Fehler bei der Berechnung:", e);
     return null;

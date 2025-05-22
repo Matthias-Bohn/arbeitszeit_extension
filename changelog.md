@@ -4,7 +4,16 @@ Alle relevanten Änderungen dieser Chrome-Erweiterung werden in diesem Dokument 
 
 ---
 
-## [1.2] – 2025-04-24
+## [1.3] – 22.05.2025
+
+### Geändert
+
+- **Tippfehler** in "Eingetragene Arbeitszeit" wurde korrigiert.
+- Die *aktuelle Arbeitszeit* wird **nicht mehr angezeigt**, wenn das gewählte Datum **nicht der heutige Tag** ist.
+
+---
+
+## [1.2] – 24.04.2025
 
 ### Geändert
 
@@ -14,3 +23,7 @@ Alle relevanten Änderungen dieser Chrome-Erweiterung werden in diesem Dokument 
 ---
 
 ## Geplant
+
+- Schreibfehler in "Eingetragene Arbeitzeit" Korrigieren
+- Aktuelle Arbeitszeit nicht mehr anzeigen wenn Datum nicht heute ist
+  
