@@ -6,7 +6,7 @@ Alle relevanten Änderungen dieser Chrome-Erweiterung werden in diesem Dokument 
 
 ## [1.3] – 22.05.2025
 
-### Geändert
+### Änderungen
 
 - **Tippfehler** in "Eingetragene Arbeitszeit" wurde korrigiert.
 - Die *aktuelle Arbeitszeit* wird **nicht mehr angezeigt**, wenn das gewählte Datum **nicht der heutige Tag** ist.
@@ -15,7 +15,7 @@ Alle relevanten Änderungen dieser Chrome-Erweiterung werden in diesem Dokument 
 
 ## [1.2] – 24.04.2025
 
-### Geändert
+### Änderungen
 
 - **Bugfix:** Die Berechnung der *aktuellen Arbeitszeit* berücksichtigt nun korrekt Pausenzeiten, die **nach der aktuellen Uhrzeit** liegen.
 - Vorher wurde die Pause vollständig abgezogen, auch wenn sie in der Zukunft lag – dies führte zu **negativen Nettozeiten** oder **falschen Berechnungen**.
