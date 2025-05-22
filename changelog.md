@@ -23,7 +23,4 @@ Alle relevanten Änderungen dieser Chrome-Erweiterung werden in diesem Dokument 
 ---
 
 ## Geplant
-
-- Schreibfehler in "Eingetragene Arbeitzeit" Korrigieren
-- Aktuelle Arbeitszeit nicht mehr anzeigen wenn Datum nicht heute ist
   
