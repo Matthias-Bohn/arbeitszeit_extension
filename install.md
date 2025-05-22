@@ -6,9 +6,9 @@ Mit dieser Chrome-Erweiterung kannst du automatisch deine tägliche Arbeitszeit 
 
 ## 🔧 Installation
 
-### 1. Projekt herunterladen
+### 1. Projekt kopieren (optional nicht empfohlen)
 
-Lade den kompletten Code (inkl. `manifest.json`, `popup.html`, `popup.js` und `logo.png`) in einen lokalen Ordner.
+Kopiere den kompletten Code aus `S:\Chrome_extensions\arbeitszeit_extension` (inkl. `manifest.json`, `popup.html`, `popup.js` und `logo.png`) in einen lokalen Ordner.
 
 ### 2. Entwicklermodus in Chrome aktivieren
 
@@ -18,7 +18,7 @@ Lade den kompletten Code (inkl. `manifest.json`, `popup.html`, `popup.js` und `l
 ### 3. Erweiterung laden
 
 1. Klicke auf **Entpackte Erweiterung laden**
-2. Wähle den Ordner mit deinen Dateien (arbeitszeit_extension)
+2. Wähle den Ordner "S:\Chrome_extensions\arbeitszeit_extension" oder deine Lokale Kopie
 3. Wähle oben rechts erweiterungen und Pinne die Extension an
 
 ### 4. Nutzung
